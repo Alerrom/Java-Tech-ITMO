@@ -65,6 +65,6 @@ public class Client {
 
 
     public boolean IsDoubtfulAccount() {
-        return this.address.equals("") || this.passport.equals("") || this.passport == null;
+        return this.passport == null || this.address == null || this.address.equals("") || this.passport.equals("");
     }
 }
