@@ -5,7 +5,7 @@ import ru.banks.itmo.entity.account.BalanceInterest;
 import java.util.ArrayList;
 
 public class CentralBank {
-    private ArrayList<Bank> banks;
+    private List<Bank> banks;
 
     public CentralBank() {
         banks = new ArrayList<>();
