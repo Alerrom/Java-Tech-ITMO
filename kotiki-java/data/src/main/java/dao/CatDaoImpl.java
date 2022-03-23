@@ -4,6 +4,7 @@ import entity.Cat;
 import entity.CatDb;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
@@ -53,13 +54,21 @@ public class CatDaoImpl implements CatDao {
 
     @Override
     public List<Cat> findAll() {
-        //TODO: implement method
-        return null;
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        String sql = "SELECT * FROM cats";
+        Query query = session.createSQLQuery(sql);
+        List<Cat> cats = query.list();
+        session.close();
+        return cats;
     }
 
     @Override
-    public List<Cat> findCatFriends() {
-        //TODO: implement method
-        return null;
+    public List<Integer> findCatFriends(int catId) {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        String sql = "SELECT friend_id FROM friends WHERE cat_id = " + catId;
+        Query query = session.createSQLQuery(sql);
+        List<Integer> catsId = query.list();
+        session.close();
+        return catsId;
     }
 }

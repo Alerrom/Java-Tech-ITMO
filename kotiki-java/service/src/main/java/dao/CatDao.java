@@ -15,5 +15,5 @@ public interface CatDao {
 
     List<Cat> findAll();
 
-    List<Cat> findCatFriends();
+    List<Integer> findCatFriends(int catId);
 }

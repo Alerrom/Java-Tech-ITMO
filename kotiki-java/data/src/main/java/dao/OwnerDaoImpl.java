@@ -1,9 +1,11 @@
 package dao;
 
+import entity.Cat;
 import entity.Owner;
 import entity.OwnerDb;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
@@ -54,7 +56,11 @@ public class OwnerDaoImpl implements OwnerDao {
 
     @Override
     public List<Owner> findAll() {
-        //TODO: implement method!
-        return null;
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        String sql = "SELECT * FROM owners";
+        Query query = session.createSQLQuery(sql);
+        List<Owner> owners = query.list();
+        session.close();
+        return owners;
     }
 }
