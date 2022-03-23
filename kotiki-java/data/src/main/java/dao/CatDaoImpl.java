@@ -1,5 +1,6 @@
 package dao;
 
+import entity.Cat;
 import entity.CatDb;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -9,55 +10,55 @@ import java.util.List;
 
 public class CatDaoImpl implements CatDao {
     @Override
-    public CatDb findById(int id) {
+    public Cat findById(int id) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        CatDb catDb = session.get(CatDb.class, id);
+        CatDb cat = session.get(CatDb.class, id);
         session.close();
 
-        return catDb;
+        return cat;
     }
 
     @Override
-    public void save(CatDb catDb) {
+    public void save(Cat cat) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
 
         Transaction transaction = session.beginTransaction();
-        session.save(catDb);
+        session.save(cat);
         transaction.commit();
 
         session.close();
     }
 
     @Override
-    public void update(CatDb catDb) {
+    public void update(Cat cat) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
 
         Transaction transaction = session.beginTransaction();
-        session.update(catDb);
+        session.update(cat);
         transaction.commit();
 
         session.close();
     }
 
     @Override
-    public void delete(CatDb catDb) {
+    public void delete(Cat cat) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
 
         Transaction transaction = session.beginTransaction();
-        session.delete(catDb);
+        session.delete(cat);
         transaction.commit();
 
         session.close();
     }
 
     @Override
-    public List<CatDb> findAll() {
+    public List<Cat> findAll() {
         //TODO: implement method
         return null;
     }
 
     @Override
-    public List<CatDb> findCatFriends() {
+    public List<Cat> findCatFriends() {
         //TODO: implement method
         return null;
     }

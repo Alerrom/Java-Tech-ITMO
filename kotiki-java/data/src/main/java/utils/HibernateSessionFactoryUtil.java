@@ -1,7 +1,9 @@
 package utils;
 
 
+import entity.Cat;
 import entity.CatDb;
+import entity.Owner;
 import entity.OwnerDb;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
