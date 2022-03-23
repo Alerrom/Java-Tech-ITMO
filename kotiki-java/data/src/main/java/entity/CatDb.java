@@ -41,6 +41,7 @@ public class CatDb implements Cat {
         this.friends = new HashSet<>();
     }
 
+    @Override
     public int getId() {
         return id;
     }

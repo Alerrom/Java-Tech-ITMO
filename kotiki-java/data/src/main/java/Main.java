@@ -10,6 +10,7 @@ import java.sql.Date;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         OwnerService ownerService = new OwnerService(new OwnerDaoImpl());
         CatService catService = new CatService(new CatDaoImpl());
 
@@ -29,5 +30,6 @@ public class Main {
         owner1.addCat(cat1);
         owner1.addCat(cat2);
         ownerService.updateOwner(owner1);
+        */
     }
 }

@@ -1,6 +1,5 @@
 package dao;
 
-import entity.Cat;
 import entity.Owner;
 import entity.OwnerDb;
 import org.hibernate.Session;
