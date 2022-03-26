@@ -12,15 +12,20 @@ public class OwnerDb implements Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "birthday")
     private Date birthday;
+
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<CatDb> cats;
 
     public OwnerDb() {
     }
 
-    public OwnerDb(String name, Date birthday){
+    public OwnerDb(String name, Date birthday) {
         this.name = name;
         this.birthday = birthday;
         this.cats = new ArrayList<>();
@@ -63,6 +68,7 @@ public class OwnerDb implements Owner {
     public void setCats(List<CatDb> cats) {
         this.cats = cats;
     }
+
     @Override
     public String toString() {
         return "models.Owner{" +

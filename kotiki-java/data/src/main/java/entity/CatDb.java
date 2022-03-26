@@ -11,9 +11,17 @@ public class CatDb implements Cat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "birthday")
     private Date birthday;
+
+    @Column(name = "breed")
     private String breed;
+
+    @Column(name = "color")
     private Color color;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -93,16 +101,6 @@ public class CatDb implements Cat {
     public void deleteFriend(CatDb catDb) {
         this.friends.remove(catDb);
     }
-
-    /*
-    public void setFriends(List<CatDb> friends) {
-        this.friends = friends;
-    }
-
-    public List<CatDb> getFriends() {
-        return friends;
-    }
-*/
 
     @Override
     public String toString() {
