@@ -1,74 +1,65 @@
-package dao;
+package ru.kotiki.itmo.dao;
 
-import entity.Cat;
-import entity.CatDb;
+import ru.kotiki.itmo.entity.Owner;
+import ru.kotiki.itmo.entity.OwnerDb;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import utils.HibernateSessionFactoryUtil;
+import ru.kotiki.itmo.utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
 
-public class CatDaoImpl implements CatDao {
+public class OwnerDaoImpl implements OwnerDao {
+
     @Override
-    public Cat findById(int id) {
+    public Owner findById(int id) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        CatDb cat = session.get(CatDb.class, id);
+        OwnerDb ownerDb = session.get(OwnerDb.class, id);
         session.close();
 
-        return cat;
+        return ownerDb;
     }
 
     @Override
-    public void save(Cat cat) {
+    public void save(Owner owner) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
 
         Transaction transaction = session.beginTransaction();
-        session.save(cat);
+        session.save(owner);
         transaction.commit();
 
         session.close();
     }
 
     @Override
-    public void update(Cat cat) {
+    public void update(Owner owner) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
 
         Transaction transaction = session.beginTransaction();
-        session.update(cat);
+        session.update(owner);
         transaction.commit();
 
         session.close();
     }
 
     @Override
-    public void delete(Cat cat) {
+    public void delete(Owner owner) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
 
         Transaction transaction = session.beginTransaction();
-        session.delete(cat);
+        session.delete(owner);
         transaction.commit();
 
         session.close();
     }
 
     @Override
-    public List<Cat> findAll() {
+    public List<Owner> findAll() {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        String sql = "SELECT * FROM cats";
+        String sql = "SELECT * FROM owners";
         Query query = session.createSQLQuery(sql);
-        List<Cat> cats = query.list();
+        List<Owner> owners = query.list();
         session.close();
-        return cats;
-    }
-
-    @Override
-    public List<Integer> findCatFriends(int catId) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        String sql = "SELECT friend_id FROM friends WHERE cat_id = " + catId;
-        Query query = session.createSQLQuery(sql);
-        List<Integer> catsId = query.list();
-        session.close();
-        return catsId;
+        return owners;
     }
 }

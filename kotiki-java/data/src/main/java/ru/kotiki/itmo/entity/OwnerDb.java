@@ -1,4 +1,4 @@
-package entity;
+package ru.kotiki.itmo.entity;
 
 import javax.persistence.*;
 import java.sql.Date;

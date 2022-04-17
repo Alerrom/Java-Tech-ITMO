@@ -1,7 +1,7 @@
-package service;
+package ru.kotiki.itmo.service;
 
-import dao.OwnerDao;
-import entity.Owner;
+import ru.kotiki.itmo.dao.OwnerDao;
+import ru.kotiki.itmo.entity.Owner;
 
 import java.util.List;
 

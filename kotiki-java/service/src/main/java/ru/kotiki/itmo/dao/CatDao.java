@@ -1,6 +1,6 @@
-package dao;
+package ru.kotiki.itmo.dao;
 
-import entity.Cat;
+import ru.kotiki.itmo.entity.Cat;
 
 import java.util.List;
 

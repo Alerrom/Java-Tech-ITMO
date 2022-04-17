@@ -1,4 +1,4 @@
-package entity;
+package ru.kotiki.itmo.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -22,6 +22,7 @@ public class CatDb implements Cat {
     private String breed;
 
     @Column(name = "color")
+    @Enumerated(EnumType.STRING)
     private Color color;
 
     @ManyToOne(fetch = FetchType.LAZY)

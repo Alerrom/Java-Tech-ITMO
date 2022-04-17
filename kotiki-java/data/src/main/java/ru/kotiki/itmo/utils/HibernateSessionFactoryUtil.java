@@ -1,10 +1,8 @@
-package utils;
+package ru.kotiki.itmo.utils;
 
 
-import entity.Cat;
-import entity.CatDb;
-import entity.Owner;
-import entity.OwnerDb;
+import ru.kotiki.itmo.entity.CatDb;
+import ru.kotiki.itmo.entity.OwnerDb;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
