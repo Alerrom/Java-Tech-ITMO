@@ -1,7 +1,6 @@
 package ru.kotiki.itmo.dao;
 
 import ru.kotiki.itmo.entity.Owner;
-import ru.kotiki.itmo.entity.OwnerDb;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -14,7 +13,7 @@ public class OwnerDaoImpl implements OwnerDao {
     @Override
     public Owner findById(int id) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        OwnerDb ownerDb = session.get(OwnerDb.class, id);
+        Owner ownerDb = session.get(Owner.class, id);
         session.close();
 
         return ownerDb;

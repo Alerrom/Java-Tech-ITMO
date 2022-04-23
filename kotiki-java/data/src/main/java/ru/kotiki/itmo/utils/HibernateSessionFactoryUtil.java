@@ -1,8 +1,8 @@
 package ru.kotiki.itmo.utils;
 
 
-import ru.kotiki.itmo.entity.CatDb;
-import ru.kotiki.itmo.entity.OwnerDb;
+import ru.kotiki.itmo.entity.Cat;
+import ru.kotiki.itmo.entity.Owner;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -17,8 +17,8 @@ public class HibernateSessionFactoryUtil {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration().configure();
-                configuration.addAnnotatedClass(OwnerDb.class);
-                configuration.addAnnotatedClass(CatDb.class);
+                configuration.addAnnotatedClass(Owner.class);
+                configuration.addAnnotatedClass(Cat.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
             } catch (Exception e) {

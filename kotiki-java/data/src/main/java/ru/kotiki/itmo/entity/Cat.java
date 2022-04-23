@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "cats")
-public class CatDb implements Cat {
+public class Cat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,7 +27,7 @@ public class CatDb implements Cat {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
-    private OwnerDb owner;
+    private Owner owner;
 
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -36,13 +36,13 @@ public class CatDb implements Cat {
             joinColumns = @JoinColumn(name = "cat_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id")
     )
-    private Set<CatDb> friends;
+    private Set<Cat> friends;
 
 
-    public CatDb() {
+    public Cat() {
     }
 
-    public CatDb(String name, Date birthday, String breed, Color color) {
+    public Cat(String name, Date birthday, String breed, Color color) {
         this.name = name;
         this.birthday = birthday;
         this.breed = breed;
@@ -50,7 +50,7 @@ public class CatDb implements Cat {
         this.friends = new HashSet<>();
     }
 
-    @Override
+
     public int getId() {
         return id;
     }
@@ -91,15 +91,15 @@ public class CatDb implements Cat {
         return owner;
     }
 
-    public void setOwner(OwnerDb owner) {
+    public void setOwner(Owner owner) {
         this.owner = owner;
     }
 
-    public void addFriend(CatDb catDb) {
+    public void addFriend(Cat catDb) {
         this.friends.add(catDb);
     }
 
-    public void deleteFriend(CatDb catDb) {
+    public void deleteFriend(Cat catDb) {
         this.friends.remove(catDb);
     }
 

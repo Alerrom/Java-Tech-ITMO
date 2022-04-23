@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "owners")
-public class OwnerDb implements Owner {
+public class Owner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,27 +20,26 @@ public class OwnerDb implements Owner {
     private Date birthday;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = false)
-    private List<CatDb> cats;
+    private List<Cat> cats;
 
-    public OwnerDb() {
+    public Owner() {
     }
 
-    public OwnerDb(String name, Date birthday) {
+    public Owner(String name, Date birthday) {
         this.name = name;
         this.birthday = birthday;
         this.cats = new ArrayList<>();
     }
 
-    public void addCat(CatDb cat) {
+    public void addCat(Cat cat) {
         cat.setOwner(this);
         cats.add(cat);
     }
 
-    public void removeCat(CatDb cat) {
+    public void removeCat(Cat cat) {
         cats.remove(cat);
     }
 
-    @Override
     public int getId() {
         return id;
     }
@@ -61,11 +60,11 @@ public class OwnerDb implements Owner {
         this.birthday = birthday;
     }
 
-    public List<CatDb> getCats() {
+    public List<Cat> getCats() {
         return cats;
     }
 
-    public void setCats(List<CatDb> cats) {
+    public void setCats(List<Cat> cats) {
         this.cats = cats;
     }
 

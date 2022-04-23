@@ -5,10 +5,10 @@ import ru.kotiki.itmo.entity.Cat;
 
 import java.util.List;
 
-public class CatService {
+public class CatServiceImpl implements CatService {
     private CatDao catDao;
 
-    public CatService(CatDao catDao) {
+    public CatServiceImpl(CatDao catDao) {
         this.catDao = catDao;
     }
 

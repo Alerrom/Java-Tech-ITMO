@@ -1,7 +1,6 @@
 package ru.kotiki.itmo.dao;
 
 import ru.kotiki.itmo.entity.Cat;
-import ru.kotiki.itmo.entity.CatDb;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -13,7 +12,7 @@ public class CatDaoImpl implements CatDao {
     @Override
     public Cat findById(int id) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        CatDb cat = session.get(CatDb.class, id);
+        Cat cat = session.get(Cat.class, id);
         session.close();
 
         return cat;

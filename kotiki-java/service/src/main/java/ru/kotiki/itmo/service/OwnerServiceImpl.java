@@ -5,10 +5,10 @@ import ru.kotiki.itmo.entity.Owner;
 
 import java.util.List;
 
-public class OwnerService {
+public class OwnerServiceImpl implements OwnerService {
     private OwnerDao ownerDao;
 
-    public OwnerService(OwnerDao ownerDao) {
+    public OwnerServiceImpl(OwnerDao ownerDao) {
         this.ownerDao = ownerDao;
     }
 
