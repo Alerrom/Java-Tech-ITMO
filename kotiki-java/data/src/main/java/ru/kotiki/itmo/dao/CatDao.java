@@ -1,19 +1,9 @@
 package ru.kotiki.itmo.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import ru.kotiki.itmo.entity.Cat;
 
-import java.util.List;
-
-public interface CatDao {
-    Cat findById(int id);
-
-    void save(Cat cat);
-
-    void update(Cat cat);
-
-    void delete(Cat cat);
-
-    List<Cat> findAll();
-
-    List<Integer> findCatFriends(int catId);
+@Repository
+public interface CatDao extends JpaRepository<Cat, Integer> {
 }

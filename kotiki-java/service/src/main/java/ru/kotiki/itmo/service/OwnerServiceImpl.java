@@ -1,34 +1,54 @@
 package ru.kotiki.itmo.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.kotiki.itmo.dao.OwnerDao;
 import ru.kotiki.itmo.entity.Owner;
+import ru.kotiki.itmo.service.dto.OwnerDto;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+@Service
 public class OwnerServiceImpl implements OwnerService {
     private OwnerDao ownerDao;
 
+    @Autowired
     public OwnerServiceImpl(OwnerDao ownerDao) {
         this.ownerDao = ownerDao;
     }
 
-    public Owner findOwner(int id) {
-        return ownerDao.findById(id);
+    public OwnerDto getOwner(int id) {
+        Owner owner = ownerDao.getById(id);
+        return new OwnerDto(owner);
     }
 
     public void saveOwner(Owner owner) {
         ownerDao.save(owner);
     }
 
-    public void updateOwner(Owner owner) {
-        ownerDao.update(owner);
-    }
-
     public void deleteOwner(Owner owner) {
         ownerDao.delete(owner);
     }
 
-    public List<Owner> findAllOwners() {
-        return ownerDao.findAll();
+    public List<OwnerDto> findAllOwners() {
+        List<Owner> owners = ownerDao.findAll();
+        List<OwnerDto> tmp = new ArrayList<>();
+        for (int i = 0; i < owners.size(); i++) {
+            tmp.add(new OwnerDto(owners.get(i)));
+        }
+        return tmp;
+    }
+
+    public List<OwnerDto> findOwnersByName(String name) {
+        List<Owner> owners = ownerDao.findAll();
+        List<OwnerDto> tmp = new ArrayList<>();
+        for (int i = 0; i < owners.size(); i++) {
+            if (Objects.equals(owners.get(i).getName(), name)) {
+                tmp.add(new OwnerDto(owners.get(i)));
+            }
+        }
+        return tmp;
     }
 }
