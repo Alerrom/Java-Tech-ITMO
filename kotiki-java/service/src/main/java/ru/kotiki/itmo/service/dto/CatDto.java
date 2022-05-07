@@ -7,12 +7,12 @@ import ru.kotiki.itmo.entity.Owner;
 import java.sql.Date;
 
 public class CatDto {
-    private int id;
-    private String name;
-    private Date birthday;
-    private String breed;
-    private Color color;
-    private int ownerId;
+    private final int id;
+    private final String name;
+    private final Date birthday;
+    private final String breed;
+    private final Color color;
+    private final int ownerId;
 
     public CatDto(Cat cat) {
         this.id = cat.getId();

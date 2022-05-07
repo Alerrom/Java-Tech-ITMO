@@ -5,9 +5,9 @@ import ru.kotiki.itmo.entity.Owner;
 import java.sql.Date;
 
 public class OwnerDto {
-    private int id;
-    private String name;
-    private Date birthday;
+    private final int id;
+    private final String name;
+    private final Date birthday;
 
     public OwnerDto(Owner owner) {
         this.id = owner.getId();

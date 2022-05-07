@@ -1,6 +1,6 @@
 package ru.kotiki.itmo.controller;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,23 +11,27 @@ import ru.kotiki.itmo.service.dto.OwnerDto;
 import java.util.List;
 
 @RestController
-@RequestMapping("owners-rest")
+@RequestMapping("owners")
 public class OwnerController {
-    private OwnerService ownerService;
+    private final OwnerService ownerService;
+    @Autowired
+    public OwnerController(OwnerService ownerService) {
+        this.ownerService = ownerService;
+    }
 
-    @GetMapping(produces = "application/json")
+    @GetMapping
     public List<OwnerDto> getAll() {
         List<OwnerDto> owners = ownerService.findAllOwners();
         return owners;
     }
 
-    @GetMapping(value = "/{id}", produces = "application/json")
+    @GetMapping(value = "/{id}")
     public OwnerDto getById(@RequestParam("id") Integer id) {
         OwnerDto owner = ownerService.getOwner(id);
         return owner;
     }
 
-    @GetMapping(value = "/filter", produces = "application/json")
+    @GetMapping(value = "/filter")
     public List<OwnerDto> getByName(String name) {
         List<OwnerDto> owners = ownerService.findOwnersByName(name);
         return owners;
