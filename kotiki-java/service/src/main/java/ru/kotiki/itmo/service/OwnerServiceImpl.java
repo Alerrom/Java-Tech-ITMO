@@ -24,8 +24,9 @@ public class OwnerServiceImpl implements OwnerService {
         return new OwnerDto(owner);
     }
 
-    public void saveOwner(Owner owner) {
-        ownerDao.save(owner);
+    public OwnerDto saveOwner(Owner owner) {
+        var tmpOwner = ownerDao.save(owner);
+        return new OwnerDto(tmpOwner);
     }
 
     public void deleteOwner(Owner owner) {

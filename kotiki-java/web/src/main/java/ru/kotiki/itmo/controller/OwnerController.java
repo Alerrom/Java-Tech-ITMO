@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("owners")
 public class OwnerController {
     private final OwnerService ownerService;
+
     @Autowired
     public OwnerController(OwnerService ownerService) {
         this.ownerService = ownerService;

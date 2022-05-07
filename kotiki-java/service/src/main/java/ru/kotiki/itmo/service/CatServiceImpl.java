@@ -24,8 +24,9 @@ public class CatServiceImpl implements CatService {
         return new CatDto(cat);
     }
 
-    public void saveCat(Cat cat) {
-        catDao.save(cat);
+    public CatDto saveCat(Cat cat) {
+        var tmpCat = catDao.save(cat);
+        return new CatDto(tmpCat);
     }
 
     public void deleteCat(Cat cat) {

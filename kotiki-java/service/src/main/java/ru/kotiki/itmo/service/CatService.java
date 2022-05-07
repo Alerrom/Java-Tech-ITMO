@@ -9,7 +9,7 @@ public interface CatService {
 
     CatDto getCat(int id);
 
-    void saveCat(Cat cat);
+    CatDto saveCat(Cat cat);
 
     void deleteCat(Cat cat);
 
