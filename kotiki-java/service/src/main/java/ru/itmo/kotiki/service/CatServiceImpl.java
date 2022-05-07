@@ -1,10 +1,10 @@
-package ru.kotiki.itmo.service;
+package ru.itmo.kotiki.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.kotiki.itmo.dao.CatDao;
-import ru.kotiki.itmo.entity.Cat;
-import ru.kotiki.itmo.service.dto.CatDto;
+import ru.itmo.kotiki.dao.CatDao;
+import ru.itmo.kotiki.entity.Cat;
+import ru.itmo.kotiki.service.dto.CatDto;
 
 import java.util.ArrayList;
 import java.util.List;

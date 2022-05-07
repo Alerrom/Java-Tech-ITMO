@@ -1,12 +1,12 @@
-package ru.kotiki.itmo.controller;
+package ru.itmo.kotiki.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.kotiki.itmo.service.OwnerService;
-import ru.kotiki.itmo.service.dto.OwnerDto;
+import ru.itmo.kotiki.service.OwnerService;
+import ru.itmo.kotiki.service.dto.OwnerDto;
 
 import java.util.List;
 

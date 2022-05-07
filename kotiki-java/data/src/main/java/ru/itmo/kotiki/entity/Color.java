@@ -1,4 +1,4 @@
-package ru.kotiki.itmo.entity;
+package ru.itmo.kotiki.entity;
 
 public enum Color {
     BLUE,

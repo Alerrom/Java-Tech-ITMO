@@ -1,6 +1,6 @@
-package ru.kotiki.itmo.service.dto;
+package ru.itmo.kotiki.service.dto;
 
-import ru.kotiki.itmo.entity.Owner;
+import ru.itmo.kotiki.entity.Owner;
 
 import java.sql.Date;
 

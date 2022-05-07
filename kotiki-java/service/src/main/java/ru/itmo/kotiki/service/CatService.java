@@ -1,7 +1,7 @@
-package ru.kotiki.itmo.service;
+package ru.itmo.kotiki.service;
 
-import ru.kotiki.itmo.entity.Cat;
-import ru.kotiki.itmo.service.dto.CatDto;
+import ru.itmo.kotiki.entity.Cat;
+import ru.itmo.kotiki.service.dto.CatDto;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.kotiki.itmo;
+package ru.itmo.kotiki;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

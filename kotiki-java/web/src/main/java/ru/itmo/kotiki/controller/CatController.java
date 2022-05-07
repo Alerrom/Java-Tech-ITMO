@@ -1,9 +1,9 @@
-package ru.kotiki.itmo.controller;
+package ru.itmo.kotiki.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.kotiki.itmo.service.CatService;
-import ru.kotiki.itmo.service.dto.CatDto;
+import ru.itmo.kotiki.service.CatService;
+import ru.itmo.kotiki.service.dto.CatDto;
 
 import java.util.List;
 

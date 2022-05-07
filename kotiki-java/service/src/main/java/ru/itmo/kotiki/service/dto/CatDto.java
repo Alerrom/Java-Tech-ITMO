@@ -1,7 +1,7 @@
-package ru.kotiki.itmo.service.dto;
+package ru.itmo.kotiki.service.dto;
 
-import ru.kotiki.itmo.entity.Cat;
-import ru.kotiki.itmo.entity.Color;
+import ru.itmo.kotiki.entity.Color;
+import ru.itmo.kotiki.entity.Cat;
 
 import java.sql.Date;
 

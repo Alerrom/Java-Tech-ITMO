@@ -1,7 +1,7 @@
-package ru.kotiki.itmo.service;
+package ru.itmo.kotiki.service;
 
-import ru.kotiki.itmo.entity.Owner;
-import ru.kotiki.itmo.service.dto.OwnerDto;
+import ru.itmo.kotiki.entity.Owner;
+import ru.itmo.kotiki.service.dto.OwnerDto;
 
 import java.util.List;
 
