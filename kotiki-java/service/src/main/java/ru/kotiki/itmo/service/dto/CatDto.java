@@ -2,7 +2,6 @@ package ru.kotiki.itmo.service.dto;
 
 import ru.kotiki.itmo.entity.Cat;
 import ru.kotiki.itmo.entity.Color;
-import ru.kotiki.itmo.entity.Owner;
 
 import java.sql.Date;
 
@@ -21,5 +20,29 @@ public class CatDto {
         this.breed = cat.getBreed();
         this.color = cat.getColor();
         this.ownerId = cat.getOwner().getId();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public String getBreed() {
+        return breed;
     }
 }

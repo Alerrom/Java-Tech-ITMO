@@ -14,4 +14,16 @@ public class OwnerDto {
         this.name = owner.getName();
         this.birthday = owner.getBirthday();
     }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
