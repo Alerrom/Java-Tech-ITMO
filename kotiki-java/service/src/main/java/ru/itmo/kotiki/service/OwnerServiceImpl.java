@@ -8,7 +8,6 @@ import ru.itmo.kotiki.service.dto.OwnerDto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class OwnerServiceImpl implements OwnerService {
@@ -36,20 +35,20 @@ public class OwnerServiceImpl implements OwnerService {
     public List<OwnerDto> findAllOwners() {
         List<Owner> owners = ownerDao.findAll();
         List<OwnerDto> tmp = new ArrayList<>();
+        for (Owner owner : owners) {
+            tmp.add(new OwnerDto(owner));
+        }
+        return tmp;
+    }
+
+    @Override
+    public List<OwnerDto> findOwnersByName(String name) {
+        List<Owner> owners = ownerDao.findOwnersByName(name);
+        List<OwnerDto> tmp = new ArrayList<>();
         for (int i = 0; i < owners.size(); i++) {
             tmp.add(new OwnerDto(owners.get(i)));
         }
         return tmp;
     }
 
-    public List<OwnerDto> findOwnersByName(String name) {
-        List<Owner> owners = ownerDao.findAll();
-        List<OwnerDto> tmp = new ArrayList<>();
-        for (int i = 0; i < owners.size(); i++) {
-            if (Objects.equals(owners.get(i).getName(), name)) {
-                tmp.add(new OwnerDto(owners.get(i)));
-            }
-        }
-        return tmp;
-    }
 }

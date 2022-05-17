@@ -15,5 +15,5 @@ public interface CatService {
 
     List<CatDto> findAllCats();
 
-    List<CatDto> findAllCatsByColor(String color);
+    List<CatDto> findCatsByColor(String color);
 }

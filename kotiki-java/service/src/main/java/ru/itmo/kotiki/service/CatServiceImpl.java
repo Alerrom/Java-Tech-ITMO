@@ -4,15 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itmo.kotiki.dao.CatDao;
 import ru.itmo.kotiki.entity.Cat;
+import ru.itmo.kotiki.entity.Color;
 import ru.itmo.kotiki.service.dto.CatDto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class CatServiceImpl implements CatService {
-    private CatDao catDao;
+
+    private final CatDao catDao;
 
     @Autowired
     public CatServiceImpl(CatDao catDao) {
@@ -36,19 +37,17 @@ public class CatServiceImpl implements CatService {
     public List<CatDto> findAllCats() {
         List<Cat> cats = catDao.findAll();
         List<CatDto> tmp = new ArrayList<>();
-        for (int i = 0; i < cats.size(); i++) {
-            tmp.add(new CatDto(cats.get(i)));
+        for (Cat cat : cats) {
+            tmp.add(new CatDto(cat));
         }
         return tmp;
     }
 
-    public List<CatDto> findAllCatsByColor(String color) {
-        List<Cat> cats = catDao.findAll();
+    public List<CatDto> findCatsByColor(String color) {
+        List<Cat> cats = catDao.findCatsByColor(Color.valueOf(color.toUpperCase()));
         List<CatDto> tmp = new ArrayList<>();
         for (int i = 0; i < cats.size(); i++) {
-            if (Objects.equals(color, cats.get(i).getColor().values())) {
-                tmp.add(new CatDto(cats.get(i)));
-            }
+            tmp.add(new CatDto(cats.get(i)));
         }
         return tmp;
     }

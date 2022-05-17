@@ -11,7 +11,6 @@ public class CatDto {
     private final Date birthday;
     private final String breed;
     private final Color color;
-    private final int ownerId;
 
     public CatDto(Cat cat) {
         this.id = cat.getId();
@@ -19,8 +18,8 @@ public class CatDto {
         this.birthday = cat.getBirthday();
         this.breed = cat.getBreed();
         this.color = cat.getColor();
-        this.ownerId = cat.getOwner().getId();
     }
+
 
     public int getId() {
         return id;
@@ -36,10 +35,6 @@ public class CatDto {
 
     public Color getColor() {
         return color;
-    }
-
-    public int getOwnerId() {
-        return ownerId;
     }
 
     public String getBreed() {

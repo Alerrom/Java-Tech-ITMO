@@ -9,13 +9,14 @@
         <relativePath/>
     </parent>
 
-    <groupId>ru.kotiki.itmo</groupId>
+    <groupId>ru.itmo.kotiki</groupId>
     <artifactId>web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>web</name>
     <description>web</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
         <postgresql.version>42.3.4</postgresql.version>
         <springdoc-openapi-ui.version>1.6.8</springdoc-openapi-ui.version>
@@ -55,7 +56,7 @@
         </dependency>
 
         <dependency>
-            <groupId>ru.kotiki.itmo</groupId>
+            <groupId>ru.itmo.kotiki</groupId>
             <artifactId>service</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>

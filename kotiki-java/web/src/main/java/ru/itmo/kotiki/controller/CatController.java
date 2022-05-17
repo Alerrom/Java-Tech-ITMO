@@ -31,7 +31,7 @@ public class CatController {
 
     @GetMapping(value = "/filter")
     public List<CatDto> getByColor(@RequestParam("color") String color) {
-        List<CatDto> cats = catService.findAllCatsByColor(color);
+        List<CatDto> cats = catService.findCatsByColor(color);
         return cats;
     }
 }
