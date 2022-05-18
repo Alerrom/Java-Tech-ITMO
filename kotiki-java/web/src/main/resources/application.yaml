@@ -1,0 +1,38 @@
+server:
+  port: 8085
+
+spring:
+  security:
+    user:
+      name: user01
+      password: password100
+
+  jpa:
+    show_sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: Ss2a0sha02/
+    driver:
+      class: org.postgresql.Driver
+
+  #logging:
+  # level:
+  #  ru.itmo.razrab.springsecurity:debug
+
+management:
+  server:
+    port: 8090
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
