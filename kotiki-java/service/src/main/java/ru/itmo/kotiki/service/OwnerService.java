@@ -8,7 +8,7 @@ import java.util.List;
 public interface OwnerService {
     OwnerDto getOwner(int id);
 
-    OwnerDto saveOwner(Owner owner);
+    Owner saveOwner(Owner owner);
 
     void deleteOwner(Owner owner);
 

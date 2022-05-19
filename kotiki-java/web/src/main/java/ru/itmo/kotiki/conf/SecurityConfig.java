@@ -1,10 +1,12 @@
 package ru.itmo.kotiki.conf;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import ru.itmo.kotiki.service.UserDetailServiceImpl;
 
 import javax.sql.DataSource;
 
@@ -19,43 +22,57 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    public ApplicationContext context;
+    @Qualifier("daoAuthProvider")
+    DaoAuthenticationProvider daoAuthenticationProvider;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(daoAuthenticationProvider);
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/all.html").permitAll()
-                .antMatchers("/index.html").permitAll()
-                .antMatchers("/username").permitAll()
-                .antMatchers("/indexUser.html").access("hasRole('READER') or hasRole('USER')")
-                .antMatchers("/*").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/user").hasRole("READER")
+                .antMatchers("/**").hasAuthority("ADMIN")
+                .antMatchers("/owners").hasAuthority("ADMIN")
+                .antMatchers("/owners/owner").hasAuthority("ADMIN")
+                .antMatchers("/cats").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/cats/cat").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/cats/cat/**").hasAnyAuthority("USER", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .permitAll()
+                .formLogin().permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                .logout().permitAll();
     }
 
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-        DataSource dataSource = (DataSource) context.getBean(DataSource.class);
-        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
-        jdbcUserDetailsManager.setDataSource(dataSource);
-
-        jdbcUserDetailsManager.setUsersByUsernameQuery("select user_naim as username, user_password as password, 1 as enabled from xt_users where user_naim=?");
-        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select user_naim as username, case when upper(user_naim) like 'ADMIN%' then 'ROLE_ADMIN' else 'ROLE_USER' end as authority from xt_users where user_naim=?");
-
-        System.out.println(passwordEncoder().encode("password100"));
-        return jdbcUserDetailsManager;
+        return (UserDetailsService) new UserDetailServiceImpl();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return rawPassword.toString();
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return encodedPassword.equals(rawPassword.toString());
+            }
+        };
+    }
+
+    @Bean("daoAuthProvider")
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
     }
 }
