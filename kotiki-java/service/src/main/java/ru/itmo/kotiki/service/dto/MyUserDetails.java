@@ -58,4 +58,8 @@ public class MyUserDetails implements UserDetails {
     public boolean isEnabled() {
         return user.isFlag();
     }
+
+    public User getUser() {
+        return user;
+    }
 }

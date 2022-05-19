@@ -21,5 +21,5 @@ public interface CatService {
 
     CatDto findByIdAndOwnerId(int id, int ownerId);
 
-    CatDto findByName(String name);
+    List<CatDto> findCatsByColorAndOwnerId(String name, int ownerId);
 }

@@ -69,9 +69,13 @@ public class CatServiceImpl implements CatService {
     }
 
     @Override
-    public CatDto findByName(String name) {
-        Cat cat = catDao.findByName(name);
-        return new CatDto(cat);
+    public List<CatDto> findCatsByColorAndOwnerId(String name, int ownerId) {
+        List<Cat> cats = catDao.findCatsByColorAndOwnerId(name, ownerId);
+        List<CatDto> tmp = new ArrayList<>();
+        for (int i = 0; i < cats.size(); i++) {
+            tmp.add(new CatDto(cats.get(i)));
+        }
+        return tmp;
     }
 
 }
