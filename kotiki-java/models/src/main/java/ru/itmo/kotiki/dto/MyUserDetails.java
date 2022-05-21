@@ -4,9 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.itmo.kotiki.ampq.RabbitUserInfo;
-import ru.itmo.kotiki.ampq.UserResponse;
 import ru.itmo.kotiki.entity.Role;
-import ru.itmo.kotiki.entity.User;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,6 +27,9 @@ public class MyUserDetails implements UserDetails {
             authorities.add(new SimpleGrantedAuthority(role.getRole().name()));
         }
         return authorities;
+    }
+    public RabbitUserInfo getUser(){
+        return user;
     }
 
     @Override
