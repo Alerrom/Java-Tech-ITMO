@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.56.109:5432
+    username: postgres
+    password: Ss2a0sha02/
+    driver-class-name: org.postgresql.Driver
+
+  rabbitmq:
+    port: 5672
+    host: 'localhost'
+    username: user
+    password: password
+
+server:
+  port: 8086
