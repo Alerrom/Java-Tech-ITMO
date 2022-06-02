@@ -33,7 +33,7 @@ public class CatController {
     @GetMapping
     public ResponseEntity<List<CatDto>> getAll() throws JsonProcessingException {
         MyUserDetails myUserDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        int ownerId = myUserDetails.getUser().getOwner().getId();
+        int ownerId = myUserDetails.getUser().ownerId();
         RabbitCatInfo info = new RabbitCatInfo(OperationType.GET_ALL, ownerId, null, null, null);
         String rabbitResponse = (String) rabbitTemplate.convertSendAndReceive("catQueue", objectMapper.writeValueAsString(info));
         return ResponseEntity.ok(objectMapper.readValue(rabbitResponse, new TypeReference<>() {
@@ -43,7 +43,7 @@ public class CatController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<CatDto> getById(@RequestParam("id") Integer id) throws JsonProcessingException {
         MyUserDetails myUserDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        int ownerId = myUserDetails.getUser().getOwner().getId();
+        int ownerId = myUserDetails.getUser().ownerId();
         RabbitCatInfo info = new RabbitCatInfo(OperationType.GET_BY_ID, ownerId, id, null, null);
         String rabbitResponse = (String) rabbitTemplate.convertSendAndReceive("catQueue", objectMapper.writeValueAsString(info));
         return ResponseEntity.ok(objectMapper.readValue(rabbitResponse, CatDto.class));
@@ -52,7 +52,7 @@ public class CatController {
     @GetMapping(value = "/filter")
     public ResponseEntity<List<CatDto>> getByColor(@RequestParam("color") String color) throws JsonProcessingException {
         MyUserDetails myUserDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        int ownerId = myUserDetails.getUser().getOwner().getId();
+        int ownerId = myUserDetails.getUser().ownerId();
         RabbitCatInfo info = new RabbitCatInfo(OperationType.FILTER, ownerId, null, null, color);
         String rabbitResponse = (String) rabbitTemplate.convertSendAndReceive("catQueue", objectMapper.writeValueAsString(info));
         return ResponseEntity.ok(objectMapper.readValue(rabbitResponse, new TypeReference<>() {

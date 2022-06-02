@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.itmo.kotiki.ampq.RabbitOwnerInfo;
 import ru.itmo.kotiki.ampq.RabbitUserInfo;
+import ru.itmo.kotiki.ampq.UserResponse;
 import ru.itmo.kotiki.dto.MyUserDetails;
 import ru.itmo.kotiki.entity.OperationType;
 
@@ -23,12 +24,12 @@ public class UserDetailServiceImpl implements UserDetailService {
     public UserDetails loadUserByUsername(String username) throws JsonProcessingException {
         RabbitOwnerInfo info = new RabbitOwnerInfo(OperationType.GET_USER_BY_NAME, null, username, null);
         String rabbitResponse = (String) rabbitTemplate.convertSendAndReceive("ownerQueue", objectMapper.writeValueAsString(info));
-        RabbitUserInfo userResponseInfo = objectMapper.readValue(rabbitResponse, RabbitOwnerInfo.class);
+        RabbitUserInfo userInfo = objectMapper.readValue(rabbitResponse, RabbitUserInfo.class);
 
-        if (userResponseInfo == null) {
+        if (userInfo == null) {
             throw new UsernameNotFoundException("Could not find user");
         }
 
-        return new MyUserDetails(userResponseInfo);
+        return new MyUserDetails(userInfo);
     }
 }
