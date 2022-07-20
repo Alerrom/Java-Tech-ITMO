@@ -12,4 +12,10 @@ import java.util.List;
 public interface CatDao extends JpaRepository<Cat, Integer> {
     @Query("select c from Cat c where c.color = ?1")
     List<Cat> findCatsByColor(Color color);
+
+    List<Cat> findAllByOwnerId(int ownerId);
+
+    Cat findByIdAndOwnerId(int id, int ownerId);
+
+    List<Cat> findCatsByColorAndOwnerId(String name, int ownerId);
 }

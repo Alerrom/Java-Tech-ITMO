@@ -1,0 +1,19 @@
+server:
+  port: 8085
+
+spring:
+  security:
+    user:
+      name: user01
+      password: password100
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: Ss2a0sha02/
+    driver:
+      class: org.postgresql.Driver
+
+  logging:
+    level:
+      root: info
